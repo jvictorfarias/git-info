@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { FaGithubAlt, FaPlus } from 'react-icons/fa';
+import { FaGithubAlt, FaPlus, FaSpinner } from 'react-icons/fa';
 
 import { Container, Form, SubmitButton } from './styles';
 
@@ -37,6 +37,7 @@ export default class Main extends Component {
     });
   };
 
+  // Conditional Rendering on loading
   render() {
     const { newRepo, loading } = this.state;
     return (
@@ -55,7 +56,11 @@ export default class Main extends Component {
           />
 
           <SubmitButton loading={loading}>
-            <FaPlus color="#fff" size={14} />
+            {loading ? (
+              <FaSpinner color="#f8f8f2" size={14} />
+            ) : (
+              <FaPlus color="#f8f8f2" size={14} />
+            )}
           </SubmitButton>
         </Form>
       </Container>
