@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { FaGithubAlt, FaPlus, FaSpinner } from 'react-icons/fa';
 
-import { Container, Form, SubmitButton } from './styles';
+import { Container, Form, SubmitButton, List } from './styles';
 
 import api from '../../services/api';
 
@@ -24,22 +24,26 @@ export default class Main extends Component {
 
     const { newRepo, repositories } = this.state;
 
-    const response = await api.get(`/repos/${newRepo}`);
+    try {
+      const response = await api.get(`/repos/${newRepo}`, { timeout: 5000 });
 
-    const data = {
-      name: response.data.full_name,
-    };
+      const data = {
+        name: response.data.full_name,
+      };
 
-    this.setState({
-      repositories: [...repositories, data],
-      newRepo: '',
-      loading: false,
-    });
+      this.setState({
+        repositories: [...repositories, data],
+        newRepo: '',
+        loading: false,
+      });
+    } catch (error) {
+      this.setState({ loading: false });
+    }
   };
 
   // Conditional Rendering on loading
   render() {
-    const { newRepo, loading } = this.state;
+    const { newRepo, loading, repositories } = this.state;
     return (
       <Container>
         <h1>
@@ -55,7 +59,7 @@ export default class Main extends Component {
             onChange={this.handleInputChange}
           />
 
-          <SubmitButton loading={loading}>
+          <SubmitButton loading={loading ? 1 : undefined}>
             {loading ? (
               <FaSpinner color="#f8f8f2" size={14} />
             ) : (
@@ -63,6 +67,15 @@ export default class Main extends Component {
             )}
           </SubmitButton>
         </Form>
+
+        <List>
+          {repositories.map((repository) => (
+            <li key={repository.name}>
+              <span>{repository.name}</span>
+              <a href="">Detalhes</a>
+            </li>
+          ))}
+        </List>
       </Container>
     );
   }
