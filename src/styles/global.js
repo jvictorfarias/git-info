@@ -15,12 +15,12 @@ export default createGlobalStyle`
   }
 
   body {
-    background: #282a36;
+    background: #44475a;
     -webkit-font-smoothing: antialiased !important;
   }
 
   body, input, button {
-    color: #282a36;
+    color: #44475a;
     font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;
   }

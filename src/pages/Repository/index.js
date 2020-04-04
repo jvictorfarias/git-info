@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-// import { Container } from './styles';
+import { FaGithubAlt } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import { Loading, Owner } from './styles';
+import Container from '../../components/Container';
 
 import api from '../../services/api';
 
@@ -36,7 +38,25 @@ export default class Repository extends Component {
 
   render() {
     const { repository, issues, loading } = this.state;
-    return <h1>Hello</h1>;
+
+    if (loading) {
+      return <Loading>Carregando</Loading>;
+    }
+
+    return (
+      <Container>
+        <div className="logo">
+          <FaGithubAlt />
+        </div>
+        <h1>Details</h1>
+        <Owner>
+          <Link to="/">Back to repositories</Link>
+          <img src={repository.owner.avatar_url} alt={repository.owner.login} />
+          <h1>{repository.name}</h1>
+          <p>{repository.description}</p>
+        </Owner>
+      </Container>
+    );
   }
 }
 
