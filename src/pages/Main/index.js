@@ -46,7 +46,6 @@ export default class Main extends Component {
 
     try {
       if (repositories.find((repository) => repository.name === newRepo)) {
-        this.setState({ repoDuplicated: true });
         throw new Error('Duplicated repository');
       }
 
@@ -59,12 +58,19 @@ export default class Main extends Component {
       this.setState({
         repositories: [...repositories, data],
         newRepo: '',
-        loading: false,
         repoError: false,
         repoDuplicated: false,
       });
     } catch (error) {
-      this.setState({ loading: false, repoError: true });
+      if (error.message === 'Duplicated repository') {
+        this.setState({ repoDuplicated: true, loading: false });
+      } else {
+        this.setState({
+          loading: false,
+          repoError: true,
+          repoDuplicated: false,
+        });
+      }
     }
   };
 
