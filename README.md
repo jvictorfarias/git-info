@@ -7,8 +7,16 @@
 
 ## Example
 
+### Repository list
+
 <p align="center">
-  <img src="https://i.imgur.com/BzIp2K5.png" alt="logo">
+  <img src="https://i.imgur.com/BzIp2K5.png" alt="home">
+</p>
+
+### Repository Details
+
+<p align="center">
+  <img src="https://i.imgur.com/qBlNWNd.png" alt="details">
 </p>
 
 ## About the project

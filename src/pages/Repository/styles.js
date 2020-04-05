@@ -47,7 +47,7 @@ export const Owner = styled.div`
 
 export const IssueList = styled.ul`
   padding-top: 30px;
-  margin-top: 30px;
+  margin-top: 10px;
   border-top: 1px solid #eee;
   list-style: none;
 
@@ -92,4 +92,15 @@ export const IssueList = styled.ul`
       }
     }
   }
+`;
+
+export const Label = styled.span`
+  background: ${(props) => props.labelColor};
+  border-radius: 2px;
+  font-size: 12px;
+  font-weight: 600;
+  height: 20px;
+  padding: 3px 4px;
+  margin-left: 10px;
+  color: #000;
 `;

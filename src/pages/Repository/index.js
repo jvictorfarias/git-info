@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FaGithubAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { Loading, Owner, IssueList } from './styles';
+import { Loading, Owner, IssueList, Label } from './styles';
 import Container, { Logo } from '../../components/Container';
 
 import api from '../../services/api';
@@ -28,7 +28,6 @@ export default class Repository extends Component {
         },
       }),
     ]);
-
     this.setState({
       repository: repository.data,
       issues: issues.data,
@@ -56,6 +55,7 @@ export default class Repository extends Component {
           <p>{repository.description}</p>
         </Owner>
         <IssueList>
+          <h1>Issues List</h1>
           {issues.map((issue) => (
             <li key={String(issue.id)}>
               <img src={issue.user.avatar_url} alt={issue.user.login} />
@@ -63,6 +63,14 @@ export default class Repository extends Component {
                 <strong>
                   <a href={issue.html_url}>{issue.title}</a>
                   {/** LABELS */}
+                  {issue.labels.map((label) => (
+                    <Label
+                      key={String(label.id)}
+                      labelColor={`#${label.color}`}
+                    >
+                      {label.name}
+                    </Label>
+                  ))}
                 </strong>
                 <p>{issue.user.login}</p>
               </div>
