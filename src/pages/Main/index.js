@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FaGithubAlt, FaPlus, FaSpinner } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { Form, SubmitButton, List } from './styles';
-import Container from '../../components/Container';
+import Container, { Logo } from '../../components/Container';
 
 import api from '../../services/api';
 
@@ -64,9 +64,9 @@ export default class Main extends Component {
     const { newRepo, loading, repositories } = this.state;
     return (
       <Container>
-        <div className="logo">
+        <Logo>
           <FaGithubAlt />
-        </div>
+        </Logo>
         <h1>Repositories</h1>
 
         <Form onSubmit={this.handleSubmit}>
