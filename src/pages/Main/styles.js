@@ -13,6 +13,14 @@ export const Form = styled.form`
     font-size: 16px;
     color: #44475a;
   }
+
+  ${(props) =>
+    props.repoError &&
+    css`
+      input {
+        border: 1px solid #ff0000;
+      }
+    `}
 `;
 
 const rotate = keyframes`

@@ -11,6 +11,7 @@ export default class Main extends Component {
     newRepo: '',
     repositories: [],
     loading: false,
+    repoError: false,
   };
 
   // Carrega dados no LocalStorage
@@ -55,13 +56,13 @@ export default class Main extends Component {
         loading: false,
       });
     } catch (error) {
-      this.setState({ loading: false });
+      this.setState({ loading: false, repoError: true });
     }
   };
 
   // Conditional Rendering on loading
   render() {
-    const { newRepo, loading, repositories } = this.state;
+    const { newRepo, loading, repositories, repoError } = this.state;
     return (
       <Container>
         <Logo>
@@ -69,7 +70,10 @@ export default class Main extends Component {
         </Logo>
         <h1>Repositories</h1>
 
-        <Form onSubmit={this.handleSubmit}>
+        <Form
+          onSubmit={this.handleSubmit}
+          repoError={repoError ? 1 : undefined}
+        >
           <input
             type="text"
             placeholder="Add repository"
