@@ -23,7 +23,7 @@
 
 This project is a test for consuming GitHub API data and displaying some of that information to the user.
 
-### Feito Com
+### Made with
 
 - [React](http://facebook.github.io/react/) - Web framework to develop responsives SPA's with Javascript.
 - [Axios](https://github.com/axios/axios) - HTTP client for web and node js.
