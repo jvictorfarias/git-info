@@ -7,20 +7,12 @@ export const Form = styled.form`
 
   input {
     flex: 1;
-    border: 1px solid #44475a;
+    border: 1px solid ${(props) => (props.repoError ? '#ff6b6b' : '#44475a')};
     padding: 10px 15px;
     border-radius: 4px;
     font-size: 16px;
     color: #44475a;
   }
-
-  ${(props) =>
-    props.repoError &&
-    css`
-      input {
-        border: 1px solid #ff0000;
-      }
-    `}
 `;
 
 const rotate = keyframes`
@@ -59,6 +51,12 @@ export const SubmitButton = styled.button.attrs((props) => ({
         animation: ${rotate} 2s linear infinite;
       }
     `}
+`;
+
+export const RepoError = styled.span`
+  font-size: 12px;
+  color: #ff6b6b;
+  font-weight: bold;
 `;
 
 export const List = styled.ul`

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FaGithubAlt, FaPlus, FaSpinner } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { Form, SubmitButton, List } from './styles';
+import { Form, SubmitButton, List, RepoError } from './styles';
 import Container, { Logo } from '../../components/Container';
 
 import api from '../../services/api';
@@ -12,6 +12,7 @@ export default class Main extends Component {
     repositories: [],
     loading: false,
     repoError: false,
+    repoDuplicated: false,
   };
 
   // Carrega dados no LocalStorage
@@ -44,6 +45,11 @@ export default class Main extends Component {
     const { newRepo, repositories } = this.state;
 
     try {
+      if (repositories.find((repository) => repository.name === newRepo)) {
+        this.setState({ repoDuplicated: true });
+        throw new Error('Duplicated repository');
+      }
+
       const response = await api.get(`/repos/${newRepo}`, { timeout: 5000 });
 
       const data = {
@@ -54,6 +60,8 @@ export default class Main extends Component {
         repositories: [...repositories, data],
         newRepo: '',
         loading: false,
+        repoError: false,
+        repoDuplicated: false,
       });
     } catch (error) {
       this.setState({ loading: false, repoError: true });
@@ -62,7 +70,14 @@ export default class Main extends Component {
 
   // Conditional Rendering on loading
   render() {
-    const { newRepo, loading, repositories, repoError } = this.state;
+    const {
+      newRepo,
+      loading,
+      repositories,
+      repoError,
+      repoDuplicated,
+    } = this.state;
+
     return (
       <Container>
         <Logo>
@@ -89,7 +104,16 @@ export default class Main extends Component {
             )}
           </SubmitButton>
         </Form>
-
+        {repoError && !repoDuplicated ? (
+          <RepoError>Repository not found</RepoError>
+        ) : (
+          <> </>
+        )}
+        {repoDuplicated ? (
+          <RepoError>Repository already exists</RepoError>
+        ) : (
+          <></>
+        )}
         <List>
           {repositories.map((repository) => (
             <li key={repository.name}>
