@@ -32,3 +32,9 @@ This project is a test for consuming GitHub API data and displaying some of that
 - [ESLint](https://eslint.org/) - O ESLint pluggin too for JS and JSX files.
 - [react-router](https://reacttraining.com/react-router/) - React Router is a collection of navigational components that compose declaratively with your application
 - [Styled-Components](https://styled-components.com/) - Use the best bits of ES6 and CSS to style your apps without stress.
+
+### :memo: License
+
+This project is developed unde the MIT license. See the [LICENSE](LICENSE.md) file to know more details.
+
+<p align="center">Made with ❤️ by <strong> Joao Victor Farias </p>
