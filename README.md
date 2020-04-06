@@ -2,6 +2,7 @@
 
 # Git Info - Detailed Information About Repositories
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/4fe3a106f6a74782829a2ae8189c59f0)](https://app.codacy.com/manual/jvictorfarias/git-info?utm_source=github.com&utm_medium=referral&utm_content=jvictorfarias/git-info&utm_campaign=Badge_Grade_Dashboard)
 [![The MIT License](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)](http://opensource.org/licenses/MIT)
 ![GitHub last commit](https://img.shields.io/github/last-commit/jvictorfarias/git-info)
 
